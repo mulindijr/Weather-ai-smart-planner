@@ -103,3 +103,26 @@ export const getWeather = async ({
 
   return data;
 };
+
+// Hourly Forecast
+export const getHourlyForecast = async ({
+  lat,
+  lon,
+  days = 1,
+  ai = true,
+  units = "metric",
+  lang = "en",
+} = {}) => {
+  const { data } = await api.get("/hourly", {
+    params: buildParams({
+      lat,
+      lon,
+      days,
+      ai,
+      units,
+      lang,
+    }),
+  });
+
+  return data;
+};
