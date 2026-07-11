@@ -180,3 +180,32 @@ export const getForecast14 = async ({
     throw error;
   }
 };
+
+// AI Insights (PRO)
+export const getInsights = async ({
+  lat,
+  lon,
+  days = 7,
+  units = "metric",
+  lang = "en",
+} = {}) => {
+  try {
+    const { data } = await api.get("/insights", {
+      params: buildParams({
+        lat,
+        lon,
+        days,
+        units,
+        lang,
+      }),
+    });
+
+    return data;
+  } catch (error) {
+    if (error.response?.status === 403) {
+      return null;
+    }
+
+    throw error;
+  }
+};
