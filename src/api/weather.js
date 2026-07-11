@@ -126,3 +126,26 @@ export const getHourlyForecast = async ({
 
   return data;
 };
+
+// Daily Forecast
+export const getDailyForecast = async ({
+  lat,
+  lon,
+  days = 7,
+  ai = true,
+  units = "metric",
+  lang = "en",
+} = {}) => {
+  const { data } = await api.get("/daily", {
+    params: buildParams({
+      lat,
+      lon,
+      days,
+      ai,
+      units,
+      lang,
+    }),
+  });
+
+  return data;
+};
