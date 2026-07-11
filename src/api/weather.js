@@ -36,3 +36,24 @@ export const getWeatherGeo = async ({
     headers,
   };
 };
+
+// Current Weather
+export const getCurrentWeather = async ({
+  lat,
+  lon,
+  ai = true,
+  units = "metric",
+  lang = "en",
+} = {}) => {
+  const { data } = await api.get("/current", {
+    params: buildParams({
+      lat,
+      lon,
+      ai,
+      units,
+      lang,
+    }),
+  });
+
+  return data;
+};
