@@ -57,3 +57,26 @@ export const getCurrentWeather = async ({
 
   return data;
 };
+
+// Forecast
+export const getForecast = async ({
+  lat,
+  lon,
+  days = 7,
+  ai = true,
+  units = "metric",
+  lang = "en",
+} = {}) => {
+  const { data } = await api.get("/forecast", {
+    params: buildParams({
+      lat,
+      lon,
+      days,
+      ai,
+      units,
+      lang,
+    }),
+  });
+
+  return data;
+};
