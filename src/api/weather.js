@@ -149,3 +149,34 @@ export const getDailyForecast = async ({
 
   return data;
 };
+
+// 14 Day Forecast (PRO)
+export const getForecast14 = async ({
+  lat,
+  lon,
+  days = 14,
+  ai = true,
+  units = "metric",
+  lang = "en",
+} = {}) => {
+  try {
+    const { data } = await api.get("/forecast14", {
+      params: buildParams({
+        lat,
+        lon,
+        days,
+        ai,
+        units,
+        lang,
+      }),
+    });
+
+    return data;
+  } catch (error) {
+    if (error.response?.status === 403) {
+      return null;
+    }
+
+    throw error;
+  }
+};
