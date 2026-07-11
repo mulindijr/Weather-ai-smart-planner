@@ -8,3 +8,31 @@ const buildParams = (params = {}) => {
     ),
   );
 };
+
+// Auto-detect location based on IP address
+export const getWeatherGeo = async ({
+  ip = "auto",
+  lat,
+  lon,
+  days = 7,
+  ai = true,
+  units = "metric",
+  lang = "en",
+} = {}) => {
+  const { data, headers } = await api.get("/weather-geo", {
+    params: buildParams({
+      ip,
+      lat,
+      lon,
+      days,
+      ai,
+      units,
+      lang,
+    }),
+  });
+
+  return {
+    data,
+    headers,
+  };
+};
