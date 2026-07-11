@@ -10,73 +10,105 @@ import {
   getInsights,
 } from "../api/weather";
 
+import { useWeatherSettings } from "../context/WeatherSettingsContext";
+
 // Auto-detect location & initial weather
-export const useWeatherGeo = (options = {}) => {
+export const useWeatherGeo = () => {
   return useQuery({
-    queryKey: ["weather-geo", options],
-    queryFn: () => getWeatherGeo(options),
+    queryKey: ["weather-geo"],
+    queryFn: getWeatherGeo,
   });
 };
 
 // Current Weather
-export const useCurrentWeather = (options = {}) => {
+export const useCurrentWeather = () => {
+  const { settings } = useWeatherSettings();
+
   return useQuery({
-    queryKey: ["current-weather", options],
-    queryFn: () => getCurrentWeather(options),
-    enabled: !!options.lat && !!options.lon,
+    queryKey: ["current-weather", settings],
+    queryFn: () => getCurrentWeather(settings),
+    enabled: !!settings.lat && !!settings.lon,
   });
 };
 
 // Weather
-export const useWeather = (options = {}) => {
+export const useWeather = () => {
+  const { settings } = useWeatherSettings();
+
   return useQuery({
-    queryKey: ["weather", options],
-    queryFn: () => getWeather(options),
-    enabled: !!options.lat && !!options.lon,
+    queryKey: ["weather", settings],
+    queryFn: () => getWeather(settings),
+    enabled: !!settings.lat && !!settings.lon,
   });
 };
 
 // Forecast
-export const useForecast = (options = {}) => {
+export const useForecast = () => {
+  const { settings } = useWeatherSettings();
+
   return useQuery({
-    queryKey: ["forecast", options],
-    queryFn: () => getForecast(options),
-    enabled: !!options.lat && !!options.lon,
+    queryKey: ["forecast", settings],
+    queryFn: () => getForecast(settings),
+    enabled: !!settings.lat && !!settings.lon,
   });
 };
 
 // Hourly Forecast
-export const useHourlyForecast = (options = {}) => {
+export const useHourlyForecast = (days = 1) => {
+  const { settings } = useWeatherSettings();
+
   return useQuery({
-    queryKey: ["hourly-forecast", options],
-    queryFn: () => getHourlyForecast(options),
-    enabled: !!options.lat && !!options.lon,
+    queryKey: ["hourly-forecast", settings, days],
+    queryFn: () =>
+      getHourlyForecast({
+        ...settings,
+        days,
+      }),
+    enabled: !!settings.lat && !!settings.lon,
   });
 };
 
 // Daily Forecast
-export const useDailyForecast = (options = {}) => {
+export const useDailyForecast = (days = 7) => {
+  const { settings } = useWeatherSettings();
+
   return useQuery({
-    queryKey: ["daily-forecast", options],
-    queryFn: () => getDailyForecast(options),
-    enabled: !!options.lat && !!options.lon,
+    queryKey: ["daily-forecast", settings, days],
+    queryFn: () =>
+      getDailyForecast({
+        ...settings,
+        days,
+      }),
+    enabled: !!settings.lat && !!settings.lon,
   });
 };
 
 // 14-Day Forecast (Pro)
-export const useForecast14 = (options = {}) => {
+export const useForecast14 = (days = 14) => {
+  const { settings } = useWeatherSettings();
+
   return useQuery({
-    queryKey: ["forecast14", options],
-    queryFn: () => getForecast14(options),
-    enabled: !!options.lat && !!options.lon,
+    queryKey: ["forecast14", settings, days],
+    queryFn: () =>
+      getForecast14({
+        ...settings,
+        days,
+      }),
+    enabled: !!settings.lat && !!settings.lon,
   });
 };
 
 // AI Insights (Pro)
-export const useInsights = (options = {}) => {
+export const useInsights = (days = 7) => {
+  const { settings } = useWeatherSettings();
+
   return useQuery({
-    queryKey: ["insights", options],
-    queryFn: () => getInsights(options),
-    enabled: !!options.lat && !!options.lon,
+    queryKey: ["insights", settings, days],
+    queryFn: () =>
+      getInsights({
+        ...settings,
+        days,
+      }),
+    enabled: !!settings.lat && !!settings.lon,
   });
 };
