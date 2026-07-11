@@ -80,3 +80,26 @@ export const getForecast = async ({
 
   return data;
 };
+
+// Weather Endpoint
+export const getWeather = async ({
+  lat,
+  lon,
+  days = 7,
+  ai = true,
+  units = "metric",
+  lang = "en",
+} = {}) => {
+  const { data } = await api.get("/weather", {
+    params: buildParams({
+      lat,
+      lon,
+      days,
+      ai,
+      units,
+      lang,
+    }),
+  });
+
+  return data;
+};
