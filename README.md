@@ -2,6 +2,7 @@
 
 An advanced, premium React dashboard that translates raw atmospheric data and weather forecasts into real-time, actionable lifestyle and activity recommendations. Designed with state-of-the-art aesthetics, smooth micro-animations, and robust state synchronization.
 
+<img width="1920" height="918" alt="wai1" src="https://github.com/user-attachments/assets/73dd4305-23d6-4fc1-b7c0-7085bc447070" />
 ---
 
 ## 🚀 Core Features
@@ -119,3 +120,6 @@ The client communicates with the weather API via the following endpoints:
     *   `GET /daily`: Fetch multi-day weather forecast lists.
     *   `GET /hourly`: Fetch detailed hourly forecasting metrics.
     *   `GET /forecast14`: Retrieve 14-day extended telemetry forecasts (PRO tier).
+
+
+<img width="458" height="916" alt="wai5" src="https://github.com/user-attachments/assets/df48c13a-467e-465b-9d07-f102ae3a0ff1" />
