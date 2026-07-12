@@ -1,13 +1,18 @@
 import React from "react";
+import InitializeWeather from "./common/InitializeWeather";
+import DashboardLayout from "./layouts/DashboardLayout";
+import WeatherDashboard from "./pages/WeatherDashboard";
 
-const App = () => {
+function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <h1 className="text-5xl font-bold text-blue-600">
-        WeatherAI Smart Planner
-      </h1>
-    </div>
+    <>
+      <InitializeWeather />
+
+      <DashboardLayout>
+        <WeatherDashboard />
+      </DashboardLayout>
+    </>
   );
-};
+}
 
 export default App;
